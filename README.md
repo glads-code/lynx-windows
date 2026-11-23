@@ -46,3 +46,9 @@ Vérifié dans la VM Windows 11 : glads.fr et fr.wikipedia.org s'affichent (UTF-
 ## Licences
 
 Lynx : GPL v2. LibreSSL : licences OpenSSL et ISC. PDCurses : domaine public. tinycc : LGPL 2.1. Fichiers de ce dépôt : mêmes conditions que le composant qu'ils complètent.
+
+## Licences
+
+- `compat/`, `compiler.rc`, `glads.cfg` : domaine public, par la dédicace CC0 1.0 (`LICENSE`). En droit français, on ne peut pas renoncer à tous ses droits d'auteur : CC0 prévoit alors une licence libre sans condition.
+- `lynx-certfile.patch` : modification de Lynx, sous GPLv2 comme Lynx (`COPYING.GPL-2`).
+- Le binaire `lynx.exe` assemble Lynx (GPLv2), LibreSSL (licences OpenSSL, SSLeay et ISC), zlib (licence zlib), PDCurses (domaine public) et le runtime de tcc (LGPL). Chaque release qui le contient joint les archives sources exactes, y compris celle de tcc, et `compiler.rc` pour le reconstruire.
