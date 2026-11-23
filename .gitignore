@@ -1,0 +1,4 @@
+sources/
+construction/
+dist/
+.claude/settings.local.json

@@ -1,0 +1,21 @@
+--- a/WWW/Library/Implementation/HTTLS.c
++++ b/WWW/Library/Implementation/HTTLS.c
+@@ -228,6 +228,18 @@
+ 	    SSL_CTX_set_mode(ssl_ctx, SSL_MODE_RELEASE_BUFFERS);
+ #endif
+ 	    SSL_CTX_set_default_verify_paths(ssl_ctx);
++	    {
++		/* SSL_CERT_FILE de lynx.cfg : sans lui, LibreSSL ne cherche que
++		 * son chemin compilé (inutilisable sous Windows) */
++		char *ca = NULL;
++		if (non_empty(SSL_cert_file))
++		    StrAllocCopy(ca, SSL_cert_file);
++		if (ca != NULL) {
++		    if (!SSL_CTX_load_verify_locations(ssl_ctx, ca, NULL))
++			CTRACE((tfp, "HTGetSSLHandle: cannot load %s\n", ca));
++		    FREE(ca);
++		}
++	    }
+ 	    SSL_CTX_set_verify(ssl_ctx, SSL_VERIFY_PEER, HTSSLCallback);
+ 	}
+ #endif /* SSLEAY_VERSION_NUMBER < 0x0800 */
